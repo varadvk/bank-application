@@ -4,16 +4,14 @@ import com.youtube.bank.entity.Transaction;
 import com.youtube.bank.entity.User;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserRepository {
 
     private static Set<User> users = new HashSet<>();
     private static List<Transaction> transactions = new ArrayList<>();
+    Map<String, Boolean> chequeBookRequest = new HashMap<>();
 
     static {
 
@@ -26,6 +24,14 @@ public class UserRepository {
         users.add(user2);
         users.add(user3);
         users.add(user4);
+    }
+
+    public void raiseChequeBookRequest(String userId) {
+        chequeBookRequest.put(userId, false);
+    }
+
+    public Map<String, Boolean> getAllChequeBookRequest() {
+        return chequeBookRequest;
     }
 
     public boolean transferAmount(String userId, String payeeUserId, Double amount) {
