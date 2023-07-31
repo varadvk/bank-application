@@ -35,10 +35,13 @@ public class Main {
     private void initAdmin() {
 
         boolean flag = true;
+        String userId = "";
 
         while(flag) {
             System.out.println("1. Exit/Logout");
             System.out.println("2. Create a customer account");
+            System.out.println("3. See all transactions");
+            System.out.println("4. Check bank balance");
 
             int selectedOption = scanner.nextInt();
 
@@ -49,6 +52,17 @@ public class Main {
                     break;
                 case 2:
                     main.addNewCustomer();
+                    break;
+                case 3:
+                    System.out.println("Enter user id");
+                    userId = scanner.next();
+                    printTransactions(userId);
+                    break;
+                case 4:
+                    System.out.println("Enter user id");
+                    userId = scanner.next();
+                    Double accountBalance = checkBankBalance(userId);
+                    System.out.println("Your account balance is "+accountBalance);
                     break;
                 default:
                     System.out.println("Wrong choice");
