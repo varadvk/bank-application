@@ -3,6 +3,7 @@ package com.youtube.bank.main;
 import com.youtube.bank.entity.User;
 import com.youtube.bank.service.UserService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -43,6 +44,7 @@ public class Main {
             System.out.println("2. Create a customer account");
             System.out.println("3. See all transactions");
             System.out.println("4. Check bank balance");
+            System.out.println("5. Approve cheque book request");
 
             int selectedOption = scanner.nextInt();
 
@@ -65,11 +67,31 @@ public class Main {
                     Double accountBalance = checkBankBalance(userId);
                     System.out.println("Your account balance is "+accountBalance);
                     break;
+                case 5:
+                    List<String> userIds = getUserIdForCheckBookRequest();
+                    System.out.println("Please select user id from below..");
+                    System.out.println(userIds);
+
+                    userId = scanner.next();
+
+                    approveChequeBookRequest(userId);
+
+                    System.out.println("Chequebook request is approved..");
+
+                    break;
                 default:
                     System.out.println("Wrong choice");
             }
         }
 
+    }
+
+    private void approveChequeBookRequest(String userId) {
+        userService.approveChequeBookRequest(userId);
+    }
+
+    private List<String> getUserIdForCheckBookRequest() {
+        return userService.getUserIdForCheckBookRequest();
     }
 
     private void addNewCustomer() {

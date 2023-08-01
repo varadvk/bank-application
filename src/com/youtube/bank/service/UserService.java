@@ -3,6 +3,7 @@ package com.youtube.bank.service;
 import com.youtube.bank.entity.User;
 import com.youtube.bank.repository.UserRepository;
 
+import java.util.List;
 import java.util.Map;
 
 public class UserService {
@@ -43,5 +44,13 @@ public class UserService {
 
     public Map<String, Boolean> getAllChequeBookRequest() {
         return userRepository.getAllChequeBookRequest();
+    }
+
+    public List<String> getUserIdForCheckBookRequest() {
+        return userRepository.getUserIdForCheckBookRequest();
+    }
+
+    public void approveChequeBookRequest(String userId) {
+        userRepository.approveChequeBookRequest(userId);
     }
 }
